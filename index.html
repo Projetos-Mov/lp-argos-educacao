@@ -206,7 +206,11 @@ header .h-cta:hover{background:rgba(31,239,73,.1);border-color:var(--green)}
 .vqm-head .sub{font-size:13.5px;color:var(--muted-2)}
 .vqm-head .ln{flex:1;height:1px;background:var(--line);min-width:20px}
 @media (max-width:860px){
+  /* flex:1 1 0 vale para a linha do desktop. Virando coluna, a base 0 soma
+     com o overflow:hidden (que anula o min-height:auto) e o card colapsa
+     para a altura do proprio padding. Na coluna, cada card mede o conteudo. */
   .vqm{flex-direction:column}
+  .vqm-b{flex:0 0 auto}
   .vqm-a{flex:0 0 auto;padding:2px 0;transform:rotate(90deg)}
   .vqm-b{padding:22px 20px}
   .vqm-l{width:48px;height:48px;font-size:28px;margin-bottom:12px}
@@ -1359,6 +1363,8 @@ footer{border-top:1px solid var(--line);padding:56px 0 120px;background:var(--in
         el.style.opacity    = 1;
         el.style.transform  = 'none';
         el.style.visibility = 'visible';
+        el.style.clipPath   = 'none';   /* o h1 abre com clip-path: sem isso fica cortado */
+        el.style.filter     = 'none';
         el.classList.add('in');
         el.dataset.swept = 1;
       });
@@ -1366,7 +1372,15 @@ footer{border-top:1px solid var(--line);padding:56px 0 120px;background:var(--in
     ['scroll','hashchange','resize'].forEach(function(ev){
       window.addEventListener(ev, function(){ clearTimeout(t); t = setTimeout(run, 400); }, { passive:true });
     });
-    setTimeout(run, 1600);
+    /* Varredura por relogio, nao por evento. Se o motor de animacao nunca
+       rodar (aba em segundo plano, rAF estrangulado, aparelho lento, CDN
+       fora do ar), o texto aparece sozinho em ate ~1s. Nenhuma tela preta
+       espera um scroll para virar conteudo. */
+    var iv = setInterval(function(){
+      run();
+      if (safeEls.every(function(el){ return el.dataset.swept; })) clearInterval(iv);
+    }, 900);
+    setTimeout(run, 300);
   }
 
   /* Rede de seguranca: age so sobre o que ja esta na primeira dobra.
@@ -1380,6 +1394,8 @@ footer{border-top:1px solid var(--line);padding:56px 0 120px;background:var(--in
           el.style.opacity    = 1;
           el.style.transform  = 'none';
           el.style.visibility = 'visible';
+          el.style.clipPath   = 'none';
+          el.style.filter     = 'none';
           el.classList.add('in');
         }
       });
@@ -1401,9 +1417,10 @@ footer{border-top:1px solid var(--line);padding:56px 0 120px;background:var(--in
     /* 1 - abertura do hero: uma sequencia encadeada, nao 6 animacoes soltas */
     gsap.timeline({ delay:0.12 })
       .fromTo('.hero .eyebrow',  { autoAlpha:0, y:16 }, { autoAlpha:1, y:0, duration:0.6 })
-      .fromTo('.hero h1',
-        { autoAlpha:0, y:26, clipPath:'inset(0 0 100% 0)' },
-        { autoAlpha:1, y:0,  clipPath:'inset(0 0 0% 0)', duration:1.0 }, '-=0.30')
+      /* Sem clip-path aqui de proposito: se o motor parar no meio da
+         animacao, um clip-path travado corta o titulo de forma permanente,
+         e a rede de seguranca so olha opacidade. y + fade nao tem esse risco. */
+      .fromTo('.hero h1', { autoAlpha:0, y:26 }, { autoAlpha:1, y:0, duration:0.9 }, '-=0.30')
       .fromTo('.hero-sub',       { autoAlpha:0, y:18 }, { autoAlpha:1, y:0, duration:0.7 }, '-=0.65')
       .fromTo('.hero .cta-row',  { autoAlpha:0, y:18 }, { autoAlpha:1, y:0, duration:0.6 }, '-=0.45')
       .fromTo('.hero-foto',      { autoAlpha:0, y:34, scale:0.97 },
