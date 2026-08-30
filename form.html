@@ -327,8 +327,7 @@ h1,h2,h3,.display{font-family:var(--display);font-weight:700;line-height:1.12;le
 /* ==========================================================================
    CONFIGURAÇÃO
    ========================================================================== */
-var ENDPOINT = '';                 // webhook (n8n, CRM, Zapier). Vazio = WhatsApp.
-var WHATS    = '5500000000000';    // número que recebe o lead
+var ENDPOINT = 'https://n8n-n8n.ltypmw.easypanel.host/webhook/landing-educacao';  // n8n
 
 /* ==========================================================================
    PERGUNTAS
@@ -405,7 +404,7 @@ var FINAIS = {
       ['02','Avaliação pelo WhatsApp','Em até 1 dia útil, com os gargalos que encontramos entre o anúncio e a matrícula.'],
       ['03','Conversa de 30 minutos','Só se fizer sentido para os dois lados. Sem compromisso de contratação.']
     ],
-    cta:'Falar agora no WhatsApp', ctaClasse:'btn-green', whats:true
+    cta:'Conhecer o Método VQM', ctaClasse:'btn-green', href:'index.html#metodo'
   },
   cedo: {
     icone:'neutro',
@@ -415,16 +414,16 @@ var FINAIS = {
       ['01','Vamos analisar mesmo assim','Se enxergarmos um caminho viável para o seu segmento, entramos em contato.'],
       ['02','Quando a operação crescer','Fale com a gente. A avaliação continua de pé, sem custo.']
     ],
-    cta:'Tirar uma dúvida no WhatsApp', ctaClasse:'btn-grad', whats:true
+    cta:'Voltar para o site', ctaClasse:'btn-grad', href:'index.html'
   },
   conhecendo: {
     icone:'neutro',
     titulo:'Perfeito. Sem pressa.',
     texto:'Você marcou que está conhecendo possibilidades — então não vamos te ligar todo dia. Vamos analisar o cenário do seu segmento e, se houver algo útil para a sua instituição, mandamos pelo WhatsApp. <b>Quem decide o ritmo é você.</b>',
     passos:[
-      ['01','Quando quiser avançar','Chame no WhatsApp e a gente retoma de onde parou, com a sua avaliação na mão.']
+      ['01','Quando quiser avançar','É só responder quando entrarmos em contato — retomamos de onde parou, com a sua avaliação na mão.']
     ],
-    cta:'Falar quando eu quiser', ctaClasse:'btn-grad', whats:true
+    cta:'Voltar para o site', ctaClasse:'btn-grad', href:'index.html'
   }
 };
 
@@ -605,9 +604,6 @@ function telaFinal(){
     passos += '</ul>';
   }
 
-  var msg = 'Avaliação ARGOS Educação%0A%0A';
-  for (var k in estado.r) msg += k + ': ' + estado.r[k] + '%0A';
-  var link = 'https://wa.me/' + WHATS + '?text=' + encodeURIComponent(decodeURIComponent(msg));
 
   pintar(
     '<div class="fim-ico ' + f.icone + '">' +
@@ -619,8 +615,7 @@ function telaFinal(){
     '<p class="fim-txt">' + f.texto + '</p>' +
     passos +
     '<div class="acoes">' +
-      '<a class="btn ' + f.ctaClasse + '" href="' + link + '" target="_blank" rel="noopener">' + f.cta + ' <span class="arw">→</span></a>' +
-      '<a class="link-voltar" href="index.html">voltar para o site</a>' +
+      '<a class="btn ' + f.ctaClasse + '" href="' + f.href + '">' + f.cta + ' <span class="arw">→</span></a>' +
     '</div>'
   , false);
 }
@@ -759,7 +754,7 @@ function enviar(rota){
   dados.enviado_em  = new Date().toISOString();
   var u = utms(); for (var m in u) dados[m] = u[m];
 
-  if (!ENDPOINT){ console.info('[ARGOS] Sem ENDPOINT — lead só no WhatsApp:', dados); return; }
+  if (!ENDPOINT){ console.warn('[ARGOS] Sem ENDPOINT — o lead NAO foi enviado a lugar nenhum:', dados); return; }
 
   var corpo = JSON.stringify(dados);
 
