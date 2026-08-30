@@ -552,18 +552,21 @@ header .h-cta:hover{background:rgba(31,239,73,.1);border-color:var(--green)}
 .f.err .msg{display:block}
 .hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
 .form-foot{margin-top:22px;font-size:14px;color:var(--muted-2);text-align:center;line-height:1.5}
-.form-done{
-  display:none;text-align:center;padding:30px 10px;
+.form-wrap-cta{
+  max-width:760px;margin:0 auto;text-align:center;
+  background:var(--card);border:1px solid var(--line);
+  border-radius:var(--r);padding:52px 48px;
+  box-shadow:0 40px 100px -30px rgba(0,0,0,.9);
 }
-.form-done.show{display:block}
-.form-done .ok{
-  width:64px;height:64px;border-radius:50%;margin:0 auto 22px;
-  background:rgba(31,239,73,.12);border:1px solid rgba(31,239,73,.45);
-  display:flex;align-items:center;justify-content:center;
+.form-wrap-cta .lead{margin-left:auto;margin-right:auto;max-width:52ch}
+.form-wrap-cta .vqm-mini{justify-content:center;margin:28px 0 32px}
+.form-wrap-cta .btn{width:100%;max-width:420px}
+.nota-lgpd{
+  margin-top:18px;font-size:12.5px;color:var(--muted-2);line-height:1.55;
 }
-.form-done .ok svg{width:28px;height:28px;stroke:var(--green);fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
-.form-done h3{font-size:25px;margin-bottom:12px}
-.form-done p{color:var(--muted);font-weight:300}
+@media (max-width:760px){
+  .form-wrap-cta{padding:28px 20px}
+}
 .form-side .vqm-mini{display:flex;flex-direction:column;gap:14px;margin-top:38px}
 .vm{display:flex;gap:16px;align-items:flex-start}
 .vm .b{
@@ -728,7 +731,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 120px;background:var(--in
     <span class="brand-name">ARGOS</span>
     <span class="brand-tag">Educação</span>
   </a>
-  <a class="h-cta" href="#agendar">Avaliação gratuita</a>
+  <a class="h-cta" href="form.html">Avaliação gratuita</a>
 </header>
 
 <!-- ============================================================
@@ -748,7 +751,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 120px;background:var(--in
         <p class="hero-sub rv">A <b>ARGOS Educação</b> analisa sua captação para identificar oportunidades de aumentar a procura, melhorar o aproveitamento dos interessados e gerar mais matrículas.</p>
 
         <div class="cta-row rv">
-          <a class="btn btn-grad" href="#agendar">Marque sua avaliação gratuita <span class="arw">→</span></a>
+          <a class="btn btn-grad" href="form.html">Marque sua avaliação gratuita <span class="arw">→</span></a>
           <span class="micro">
             <svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
             Gratuita e sem compromisso.
@@ -814,7 +817,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 120px;background:var(--in
           É preciso entender quem chega, quem avança e por que alguns se matriculam enquanto outros desistem.
         </div>
         <div class="cta-row rv">
-          <a class="btn btn-ghost" href="#agendar">Quero entender meu cenário <span class="arw">→</span></a>
+          <a class="btn btn-ghost" href="form.html">Quero entender meu cenário <span class="arw">→</span></a>
         </div>
       </div>
       <div class="prob">
@@ -872,7 +875,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 120px;background:var(--in
     </div>
 
     <div class="cta-row rv">
-      <a class="btn btn-grad" href="#agendar">Quero aplicar o Método VQM <span class="arw">→</span></a>
+      <a class="btn btn-grad" href="form.html">Quero aplicar o Método VQM <span class="arw">→</span></a>
     </div>
   </div>
 </section>
@@ -971,7 +974,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 120px;background:var(--in
       <span class="micro" style="font-size:17px;color:var(--muted)">Na avaliação, queremos descobrir onde isso acontece na sua instituição.</span>
     </div>
     <div class="cta-row rv" style="margin-top:18px">
-      <a class="btn btn-grad" href="#agendar">Marque sua avaliação gratuita <span class="arw">→</span></a>
+      <a class="btn btn-grad" href="form.html">Marque sua avaliação gratuita <span class="arw">→</span></a>
     </div>
   </div>
 </section>
@@ -1004,7 +1007,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 120px;background:var(--in
         </div>
 
         <div class="cta-row rv">
-          <a class="btn btn-green" href="#agendar">Quero minha avaliação gratuita <span class="arw">→</span></a>
+          <a class="btn btn-green" href="form.html">Quero minha avaliação gratuita <span class="arw">→</span></a>
           <span class="micro">
             <svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
             Avaliação gratuita e sem compromisso.
@@ -1055,7 +1058,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 120px;background:var(--in
     </div>
 
     <div class="cta-row rv">
-      <a class="btn btn-grad" href="#agendar">Marque sua avaliação <span class="arw">→</span></a>
+      <a class="btn btn-grad" href="form.html">Marque sua avaliação <span class="arw">→</span></a>
     </div>
   </div>
 </section>
@@ -1160,7 +1163,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 120px;background:var(--in
       </div>
 
       <div class="cta-row center">
-        <a class="btn btn-grad" href="#agendar">Marque sua avaliação gratuita <span class="arw">→</span></a>
+        <a class="btn btn-grad" href="form.html">Marque sua avaliação gratuita <span class="arw">→</span></a>
         <span class="micro">
           <svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
           Gratuita e sem compromisso.
@@ -1174,75 +1177,22 @@ footer{border-top:1px solid var(--line);padding:56px 0 120px;background:var(--in
      10 · FORMULARIO
      ============================================================ -->
 <section class="form-sec" id="agendar">
-  <div class="mesh"></div>
   <div class="container">
-    <div class="form-grid">
-      <div class="form-side">
-        <span class="kick rv">Agendamento</span>
-        <h2 class="sec rv">Marque sua <span class="grad-text">avaliação gratuita</span></h2>
-        <p class="lead rv">Preencha em menos de 1 minuto. Depois do envio, nossa equipe entra em contato para confirmar o melhor horário.</p>
+    <div class="form-wrap-cta">
+      <span class="kick rv">Agendamento</span>
+      <h2 class="sec rv">Marque sua <span class="grad-text">avaliação gratuita</span></h2>
+      <p class="lead rv">São 6 perguntas rápidas sobre a sua instituição. A partir delas montamos
+        a avaliação de captação e devolvemos pelo WhatsApp.</p>
 
-        <div class="vqm-mini rv">
-          <div class="vm"><span class="b">V</span><div><div class="t">Volume</div><div class="d">Mais procura</div></div></div>
-          <div class="vm"><span class="b">Q</span><div><div class="t">Qualificação</div><div class="d">Entendemos o que tem potencial</div></div></div>
-          <div class="vm"><span class="b">M</span><div><div class="t">Matrículas</div><div class="d">Direcionamos para mais alunos</div></div></div>
-        </div>
+      <div class="vqm-mini rv">
+        <div class="vm"><span class="b">V</span><div><div class="t">Volume</div><div class="d">Mais procura</div></div></div>
+        <div class="vm"><span class="b">Q</span><div><div class="t">Qualificação</div><div class="d">Entendemos o que tem potencial</div></div></div>
+        <div class="vm"><span class="b">M</span><div><div class="t">Matrículas</div><div class="d">Direcionamos para mais alunos</div></div></div>
       </div>
 
-      <div class="form-card rv">
-        <form id="argos-form" novalidate>
-          <div class="fgrid">
-            <div class="f wide" data-f>
-              <label for="f-nome">Nome <span class="req">*</span></label>
-              <input id="f-nome" name="nome" type="text" autocomplete="name" placeholder="Seu nome completo" required>
-              <span class="msg">Preencha seu nome.</span>
-            </div>
-
-            <div class="f wide" data-f>
-              <label for="f-inst">Instituição <span class="req">*</span></label>
-              <input id="f-inst" name="instituicao" type="text" autocomplete="organization" placeholder="Nome da sua instituição" required>
-              <span class="msg">Preencha o nome da instituição.</span>
-            </div>
-
-            <div class="f wide" data-f>
-              <label for="f-tipo">Tipo de instituição <span class="req">*</span></label>
-              <select id="f-tipo" name="tipo" required>
-                <option value="">Selecione</option>
-                <option>Escola</option>
-                <option>Faculdade</option>
-                <option>Curso preparatório</option>
-                <option>Outra instituição de ensino</option>
-              </select>
-              <span class="msg">Selecione o tipo de instituição.</span>
-            </div>
-
-            <div class="f wide" data-f>
-              <label for="f-whats">WhatsApp <span class="req">*</span></label>
-              <input id="f-whats" name="whatsapp" type="tel" inputmode="numeric" autocomplete="tel" placeholder="(00) 00000-0000" required>
-              <span class="msg">Informe um WhatsApp válido com DDD.</span>
-            </div>
-
-            <div class="f wide" data-f>
-              <label for="f-desafio">Qual é hoje o principal desafio para aumentar suas matrículas? <span class="req">*</span></label>
-              <textarea id="f-desafio" name="desafio" placeholder="Conte em poucas linhas o que mais te preocupa hoje na captação." required></textarea>
-              <span class="msg">Conte rapidamente o seu principal desafio.</span>
-            </div>
-          </div>
-
-          <input class="hp" type="text" name="argos_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-
-          <div style="margin-top:26px">
-            <button class="btn btn-grad btn-full" id="f-submit" type="submit">Marcar minha avaliação gratuita <span class="arw">→</span></button>
-          </div>
-          <p class="form-foot">Após o envio, nossa equipe entrará em contato para confirmar a avaliação.</p>
-        </form>
-
-        <div class="form-done" id="form-done">
-          <div class="ok"><svg viewBox="0 0 24 24"><path d="m4 12 6 6L20 6"/></svg></div>
-          <h3>Recebemos seus dados.</h3>
-          <p>Nossa equipe entrará em contato pelo WhatsApp para confirmar o horário da sua avaliação gratuita.</p>
-        </div>
-      </div>
+      <a href="form.html" class="btn btn-grad rv">Começar minha avaliação <span class="arw">→</span></a>
+      <p class="nota-lgpd rv">Leva menos de 1 minuto · Gratuito e sem compromisso de contratação.<br>
+        Seus dados são usados apenas para preparar a avaliação. (LGPD)</p>
     </div>
   </div>
 </section>
@@ -1274,7 +1224,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 120px;background:var(--in
     </div>
 
     <div class="cta-row center rv">
-      <a class="btn btn-grad" href="#agendar">Marque sua avaliação gratuita <span class="arw">→</span></a>
+      <a class="btn btn-grad" href="form.html">Marque sua avaliação gratuita <span class="arw">→</span></a>
     </div>
   </div>
 </section>
@@ -1297,7 +1247,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 120px;background:var(--in
 </footer>
 
 <div class="mcta" id="mcta">
-  <a class="btn btn-grad" href="#agendar">Marque sua avaliação gratuita</a>
+  <a class="btn btn-grad" href="form.html">Marque sua avaliação gratuita</a>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -1530,7 +1480,6 @@ footer{border-top:1px solid var(--line);padding:56px 0 120px;background:var(--in
      formulario entra na tela, para nao competir com o proprio form.
      ============================================================ */
   var mcta = document.getElementById('mcta');
-  var form = document.getElementById('argos-form');
   var agendar = document.getElementById('agendar');
   var pastHero = false, onForm = false;
 
@@ -1547,92 +1496,6 @@ footer{border-top:1px solid var(--line);padding:56px 0 120px;background:var(--in
   } else {
     mcta.classList.add('on');
   }
-
-  /* ---------- mascara de WhatsApp ---------- */
-  var wa = document.getElementById('f-whats');
-  wa.addEventListener('input', function(){
-    var v = this.value.replace(/\D/g,'').slice(0,11);
-    if (v.length > 6)      v = '(' + v.slice(0,2) + ') ' + v.slice(2,7) + '-' + v.slice(7);
-    else if (v.length > 2) v = '(' + v.slice(0,2) + ') ' + v.slice(2);
-    else if (v.length > 0) v = '(' + v;
-    this.value = v;
-  });
-
-  /* ============================================================
-     VALIDACAO + ENVIO
-     ENDPOINT vazio = fallback que abre o WhatsApp com o briefing.
-     ============================================================ */
-  var ENDPOINT = '';                 // webhook do n8n / CRM / Zapier
-  var WHATS    = '5500000000000';    // numero que recebe o fallback
-
-  var done = document.getElementById('form-done');
-  var btn  = document.getElementById('f-submit');
-
-  function fieldOf(el){ return el.closest('[data-f]'); }
-  function clearErr(el){ var f = fieldOf(el); if (f) f.classList.remove('err'); }
-
-  form.querySelectorAll('input,select,textarea').forEach(function(el){
-    el.addEventListener('input',  function(){ clearErr(el); });
-    el.addEventListener('change', function(){ clearErr(el); });
-  });
-
-  function validate(){
-    var ok = true, first = null;
-    form.querySelectorAll('[required]').forEach(function(el){
-      var bad = !el.value.trim();
-      if (!bad && el.type === 'tel') bad = el.value.replace(/\D/g,'').length < 10;
-      fieldOf(el).classList.toggle('err', bad);
-      if (bad) { ok = false; if (!first) first = el; }
-    });
-    if (first) first.focus();
-    return ok;
-  }
-
-  form.addEventListener('submit', function(ev){
-    ev.preventDefault();
-    if (form.argos_hp.value) return;      // honeypot
-    if (!validate()) return;
-
-    var data = {};
-    new FormData(form).forEach(function(v,k){ if (k !== 'argos_hp') data[k] = v; });
-    data.origem = 'LP Argos Educacao · Avaliacao gratuita';
-    data.url    = location.href;
-
-    btn.disabled = true;
-    btn.style.opacity = .6;
-    btn.firstChild.textContent = 'Enviando… ';
-
-    function success(){
-      form.style.display = 'none';
-      done.classList.add('show');
-      done.scrollIntoView({ behavior:'smooth', block:'center' });
-    }
-
-    if (!ENDPOINT) {
-      var txt = 'Avaliação gratuita · ARGOS Educação\n\n'
-        + 'Nome: '        + data.nome + '\n'
-        + 'Instituição: ' + data.instituicao + '\n'
-        + 'Tipo: '        + data.tipo + '\n'
-        + 'WhatsApp: '    + data.whatsapp + '\n\n'
-        + 'Desafio: '     + data.desafio;
-      window.open('https://wa.me/' + WHATS + '?text=' + encodeURIComponent(txt), '_blank');
-      success();
-      return;
-    }
-
-    fetch(ENDPOINT, {
-      method:'POST',
-      headers:{ 'Content-Type':'application/json' },
-      body:JSON.stringify(data)
-    })
-    .then(function(r){ if (!r.ok) throw new Error(r.status); success(); })
-    .catch(function(){
-      btn.disabled = false;
-      btn.style.opacity = 1;
-      btn.firstChild.textContent = 'Tentar novamente ';
-      alert('Não conseguimos enviar agora. Tente novamente ou chame no WhatsApp.');
-    });
-  });
 
 })();
 </script>
