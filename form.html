@@ -763,29 +763,28 @@ function enviar(rota){
 
   var corpo = JSON.stringify(dados);
 
-  function porFetch(motivo){
-    fetch(ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'},
-                      body:corpo, keepalive:true })
-      .then(function(r){
-        if (!r.ok) console.warn('[ARGOS] webhook respondeu', r.status, '—', motivo);
-      })
-      .catch(function(e){
-        console.warn('[ARGOS] falha ao enviar o lead:', e, '—', motivo);
-      });
-  }
-
-  /* sendBeacon e o certo aqui: sobrevive a quem fecha a aba na tela final.
-     Mas ele devolve false quando nao consegue enfileirar — nesse caso o
-     lead se perderia em silencio. Por isso o retorno e checado. */
-  if (navigator.sendBeacon){
-    var enfileirou = false;
-    try { enfileirou = navigator.sendBeacon(ENDPOINT, new Blob([corpo], {type:'application/json'})); }
-    catch(e){ enfileirou = false; }
-    if (enfileirou) return;
-    porFetch('sendBeacon recusou');
-    return;
-  }
-  porFetch('sem sendBeacon');
+  /* fetch com keepalive sobrevive a quem fecha a aba na tela final, igual
+     ao sendBeacon, com duas vantagens decisivas aqui:
+       - credentials:'omit' mantem a requisicao no CORS simples. O beacon
+         envia sempre com credenciais e exigiria do servidor o cabecalho
+         Access-Control-Allow-Credentials: true, que o n8n nao devolve —
+         o preflight falhava e o lead se perdia.
+       - devolve o status, entao da para registrar a falha em vez de
+         confiar num "enfileirei" que nao significa "entreguei". */
+  fetch(ENDPOINT, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:corpo,
+    keepalive:true,
+    credentials:'omit',
+    mode:'cors'
+  })
+  .then(function(r){
+    if (!r.ok) console.warn('[ARGOS] webhook respondeu', r.status);
+  })
+  .catch(function(e){
+    console.warn('[ARGOS] falha ao enviar o lead:', e);
+  });
 }
 
 /* ========================================================================== */
